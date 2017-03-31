@@ -1,14 +1,25 @@
 <?php
-  ob_start();
-  $username="prit2596";
+//  ob_start();
+//  $username="prit2596";
   /*if(!isset($_SESSION["user"]))
   {
     echo "hello";
     //echo "<script type='text/javascript'>windows.location='login.php';</script>";
     header('location:http://localhost/project/client/login.php');
   }*/
-
 ?>
+
+  <script type="text/javascript">
+  if(localStorage)
+  {
+    if(!localStorage.getItem('sessionVar'))
+    {
+      window.location="login.php";
+    }
+  }
+
+  </script>
+
 
 <!DOCTYPE html>
 <html>
@@ -27,6 +38,8 @@
   <script type="text/javascript">
 
     var count=0;
+
+
 
     function search()
     {
@@ -63,7 +76,7 @@
             for(i=0;i<data.count;i++)
             {
               var retObj=data[i];
-              $('#printing_results').append('<div class="divider"></div><div class="section"><h4>'+retObj.bhk+' bhk '+retObj.type+' &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa fa-inr"></i>'+retObj.price+'/MONTH</h4><br /><p><h5><strong>Description:</strong>&nbsp;'+retObj.description+'</h5><br /><h5>Owner:'+retObj.firstname+' '+retObj.lastname+'</h5><br /><h5>Contact:'+retObj.contact+'</h5></p></div>');
+              $('#printing_results').append('<div class="divider"></div><div class="section"><h4>'+retObj.bhk+' bhk '+retObj.type+' &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<i class="fa fa-inr"></i>'+retObj.price+'/MONTH</h4><br /><p><h5><strong>Description:</strong>&nbsp;'+retObj.description+'</h5><br /><h5>Address:'+retObj.address+'</h5><br /><h5>Owner:'+retObj.firstname+' '+retObj.lastname+'</h5><br /><h5>Contact:'+retObj.contact+'</h5></p></div>');
             }
           }
         },
@@ -93,6 +106,7 @@
 
       $(document).ready(function() {
      $('select').material_select();
+
 
      $('#homeBut').on('click',function(){
        console.log('123');
@@ -178,7 +192,7 @@
             <li><a href="rent.php">Rent</a></li>
             <li><a href="property.php">Post Free Ad</a></li>
             <!-- Dropdown Trigger -->
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Welcome prit2596<i class="material-icons right">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><script>document.write("welcome "+localStorage.getItem('username'));</script><i class="material-icons right">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
         </nav>

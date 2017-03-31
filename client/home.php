@@ -1,17 +1,6 @@
 
 
 
-<?php
-  ob_start();
-  $username="prit2596";
-  /*if(!isset($_SESSION["user"]))
-  {
-    echo "hello";
-    //echo "<script type='text/javascript'>windows.location='login.php';</script>";
-    header('location:http://localhost/project/client/login.php');
-  }*/
-
-?>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +16,52 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
      <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.js"></script>
+     <style>
+     </style>
   </head>
+
+
+  <script type="text/javascript">
+  function del(id)
+  {
+
+      jQuery.ajax({
+        url:'../public/api/property/'+id,
+        type:'DELETE',
+        dataType:'json',
+        success:function(data)
+        {
+          console.log(data);
+          if(data.err==false)
+          {
+            if(data.suc==true)
+            {
+              Materialize.toast('Your AD is succesfully deleted',5000,'rounded');
+            }
+          }
+        },
+        error:function(error)
+        {
+          console.log('error');
+        }
+      });
+  }
+  </script>
+
+
+
+  <?php
+    ob_start();
+    $username="prit2596";
+
+    if(isset($_GET['d']))
+    {
+      $id=($_GET['d']);
+      ?><script>
+        del('<?php echo $id;?>');
+      </script>
+    <?php }
+    ?>
 
   <script type="text/javascript">
 
@@ -80,6 +114,31 @@
       }
     });
 
+    jQuery.ajax({
+      url:'../public/api/property/prit2596',
+      type:'get',
+      dataType:'json',
+      success:function(data)
+      {
+        console.log(data);
+        if(data.suc==true)
+        {
+          $('#MyProperty').append('<div class="col s12"><h1 align="center">Your Posted AD<h5 align="right"><a class="waves-light btn">'+data.count+' Post</a></h5></h1></div><hr />');
+          for(i=0;i<data.count;i++)
+          {
+            var newObj2=data[i];
+            $('#MyProperty').append('<div class="divider"></div><div class="section"><div class="row"><div class="col s5"><h5>Type: '+newObj2.type+'</h5></div><div class="col s5"><h5>BHK: '+newObj2.bhk+'</h5></div><div class="col s8"><h5>Address: '+newObj2.description+'</h5></div><div class="col s5"><h5>City: '+newObj2.city+'</h5></div><div class="col s5"><h5>Area: '+newObj2.area+'</h5></div><div class="col s5"><h5>Price: <i class="fa fa-inr"></i>'+newObj2.price+'</h5></div></div><a href="home.php?d='+newObj2.id+'" class="waves-effect waves-light btn">Delete</a></div>');
+
+          }
+        }
+      },
+      error:function(error)
+      {
+
+        console.log(error);
+      }
+    });
+
     $('#logout').click(function()
   {
       window.location="login.php";
@@ -103,7 +162,7 @@
             <li><a href="rent.php">Rent</a></li>
             <li><a href="property.php">Post Free Ad</a></li>
             <!-- Dropdown Trigger -->
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Welcome prit2596<i class="material-icons right">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><script>document.write("welcome "+localStorage.getItem('username'));</script><i class="material-icons right">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
         </nav>
@@ -146,6 +205,15 @@
     </div>
   </div>
 
+
+      <br>
+      <br>
+      <br>
+
+      <div id="MyProperty" class="col s12">
+
+
+      </div>
 
     </div>
   </body>

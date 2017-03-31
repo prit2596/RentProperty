@@ -207,14 +207,15 @@
 
 
 
-
+                $salt="sagro-batku";
+                $encPass=md5($pass,$salt);
                 $sql="INSERT INTO `users` (`username`, `firstname`, `lastname`, `password`, `address`, `city`, `state`, `zipcode`, `contact`) VALUES (:uname, :fname, :lname, :pass, :add, :city, :state, :zip, :contact)";
 
                 $stmt=$con->prepare($sql);
                 $stmt->bindParam(':uname',$uname);
                 $stmt->bindParam(':fname',$fname);
                 $stmt->bindParam(':lname',$lname);
-                $stmt->bindParam(':pass',$pass);
+                $stmt->bindParam(':pass',$encPass);
                 $stmt->bindParam(':add',$add);
                 $stmt->bindParam(':zip',$zip);
                 $stmt->bindParam(':contact',$contact);

@@ -133,6 +133,9 @@
                 <br />
                 <input type="submit" value="Login" class="btn btn-primary col-md-offset-5" /><br/>
             <br />
+                <div>
+                  <h4 align="center">Not registered?<a href="register.php">Create an Account</a></h4>
+                </div>
                 <div class="alert alert-danger" hidden>
                     Username/Password incorrect
                 </div>

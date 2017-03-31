@@ -1,3 +1,16 @@
+<script type="text/javascript">
+if(localStorage)
+{
+  if(!localStorage.getItem('sessionVar'))
+  {
+    window.location="login.php";
+  }
+}
+
+</script>
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,9 +34,9 @@
 
     <script type="text/javascript">
 
-    function postAD(district,area,type,bhk,desc,price)
+    function postAD(district,area,type,bhk,desc,price,adr)
     {
-      var obj={city:district,area:area,type:type,bhk:bhk,desc:desc,price:price,username:"prit2596"};
+      var obj={city:district,area:area,type:type,bhk:bhk,desc:desc,price:price,username:"prit2596",address:adr};
       jQuery.ajax({
         url:'../public/api/property',
         type:'post',
@@ -34,13 +47,14 @@
           console.log(data);
           if(data.suc==false)
           {
-            console.log(data.descErr);
+            console.log(data.adrErr);
             $('#districtErr').append(data.cityErr);
             $('#areaErr').append(data.areaErr);
             $('#descErr').append(data.descErr);
             $('#priceErr').append(data.priceErr);
             $('#typeErr').append(data.typeErr);
             $('#bhkErr').append(data.bhkErr);
+            $('#adrErr').append(data.adrErr);
             }
             else if(data.suc==true)
             {
@@ -48,7 +62,7 @@
               $('#type').val('');
               $('#bhk').val('');
               $('#price').val('');
-
+              $('#adr').val('');
 
               $('#successMsg').removeAttr('hidden');
               $('#successMsg').append('Your Ad has been posted!Redirecting.....');
@@ -137,8 +151,8 @@
   </script>
 
 <?php
-  $district=$area=$type=$bhk=$desc=$price="";
-  $districtErr=$areaErr=$descErr=$priceErr="";
+  $district=$area=$type=$bhk=$desc=$price=$adr="";
+  $districtErr=$areaErr=$descErr=$priceErr=$adrErr="";
   if($_SERVER["REQUEST_METHOD"]=="POST")
   {
     $district=isset($_POST["district"])?$_POST["district"]:"";
@@ -146,10 +160,11 @@
     $type=$_POST["type"];
     $bhk=$_POST["bhk"];
     $desc=$_POST["desc"];
+    $adr=$_POST["adr"];
     $price=$_POST["price"];
     ?>
     <script type="text/javascript">
-      postAD('<?php echo $district; ?>','<?php echo $area; ?>','<?php echo $type; ?>','<?php echo $bhk; ?>','<?php echo $desc; ?>','<?php echo $price; ?>')
+      postAD('<?php echo $district; ?>','<?php echo $area; ?>','<?php echo $type; ?>','<?php echo $bhk; ?>','<?php echo $desc; ?>','<?php echo $price; ?>','<?php echo $adr; ?>')
     </script>
     <?php
 
@@ -227,6 +242,15 @@
 
 
           <br />
+
+
+          <div class="form-group col-md-9 col-md-offset-1">
+            <label for="Description">Address:</label>
+            <textarea rows="4" cols="60" id="adr" name="adr" class="form-control" placeholder="Provide location of property"><?php echo $adr;?></textarea>
+            <p  id="adrErr" style="color:red"></p>
+          </div>
+          <br>
+
 
           <div class="form-group col-md-9 col-md-offset-1">
             <label for="Description">Description:</label>

@@ -129,6 +129,7 @@
                             'type'=> $result2['name'],
                             'bhk'=>$result['bhk'],
                             'description'=>$result['description'],
+                            'address'=>$result['address'],
                             'city'=>$result['city'],
                             'area'=>$result['area'],
                             'price'=>$result['price']);

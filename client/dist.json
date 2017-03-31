@@ -1,7 +1,8 @@
 [{
     "id":"1",
     "city":"Ahmedabad",
-    "areas":["Ahmedabad","Bavla","Daskroi","Detroj-Rampura","Dhandhuka","Dholera","Dholka","Mandal","Sanand","Viramgam"]
+    "areas":["Bapu Nagar","Prahlad Nagar","C.G. Road","S.G. Road","Navrangpura","Vastrapur","Ashram Road","Paldi","Saraspur","Satellite Area","Sarangpur Darwaza","Ambawadi","Ellis Bridge","Ghatlodia","Gulbai Tekra","Gita Mandir Road","Mem Nagar","Naranpura","University Area","Mithakhali Six Roads","Vadaj","Vasana","Naroda","Narol","Asarwa","Meghani Nagar","Ranip","Bopal","Sabarmati","Shahibaug","Astodia","Dariapur","Kadia","Kalupur","Lal Darwaza","Raipur","Shahpur","Dani Limbada","Jamalpur","Kankaria","Khokra Mehmedabad","Odhav","Maninagar","Sanand"]
+
   },
   {
     "id":"2",

@@ -36,7 +36,8 @@ if(localStorage)
 
     function postAD(district,area,type,bhk,desc,price,adr)
     {
-      var obj={city:district,area:area,type:type,bhk:bhk,desc:desc,price:price,username:"prit2596",address:adr};
+      var uname=localStorage.getItem('username');
+      var obj={city:district,area:area,type:type,bhk:bhk,desc:desc,price:price,username:uname,address:adr};
       jQuery.ajax({
         url:'../public/api/property',
         type:'post',

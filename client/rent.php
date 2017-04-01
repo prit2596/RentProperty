@@ -174,6 +174,10 @@
         }
      });
 
+     $('#logout').click(function()
+   {
+       window.location="login.php";
+   });
 
   });
 

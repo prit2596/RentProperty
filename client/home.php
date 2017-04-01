@@ -52,7 +52,7 @@
 
   <?php
     ob_start();
-    $username="prit2596";
+  //  $username="prit2596";
 
     if(isset($_GET['d']))
     {
@@ -72,6 +72,9 @@
         {
           window.location="login.php";
         }
+        else {
+          uname=localStorage.getItem('username');
+        }
       }
 
       function capitalizeFirstLetter(string) {
@@ -89,7 +92,7 @@
       }
     );
     jQuery.ajax({
-      url:'../public/api/user/<?php echo $username; ?>',
+      url:'../public/api/user/'+uname,
       type:'get',
       dataType:'json',
       success:function(data)
@@ -115,7 +118,7 @@
     });
 
     jQuery.ajax({
-      url:'../public/api/property/prit2596',
+      url:'../public/api/property/'+uname,
       type:'get',
       dataType:'json',
       success:function(data)
@@ -162,7 +165,7 @@
             <li><a href="rent.php">Rent</a></li>
             <li><a href="property.php">Post Free Ad</a></li>
             <!-- Dropdown Trigger -->
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><script>document.write("welcome "+localStorage.getItem('username'));</script><i class="material-icons right">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Welcome <script>document.write(localStorage.getItem('username'));</script><i class="material-icons right">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
         </nav>
